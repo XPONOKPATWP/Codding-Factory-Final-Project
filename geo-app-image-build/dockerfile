@@ -1,0 +1,57 @@
+# downloading ubuntu image to have newer but not bleeding edge packages  +
+# bigger community than other distributions
+FROM ubuntu:latest
+
+RUN groupadd -r geo-user && useradd -r  geo-user -g geo-user
+#create non root user and group and adds user to created group
+
+# The /app directory should act as the main application directory
+WORKDIR /app
+SHELL ["bash","-c"]
+#preference - fammiliarity not essential
+
+# Copy local directories to the current local directory of our docker image (/app)
+COPY ./geo-app-image-build/src/GeoProject  ./geoapp
+COPY ./geo-app-image-build/src/requirements.txt /opt/requirements.txt
+
+RUN  apt-get update && apt-get full-upgrade -y
+# update and upgrade if any
+RUN apt-get install net-tools vim nano psmisc -y
+# tools to help with debuggin containers
+RUN apt-get install -y locales python3-full python3-pip python3-venv pipx
+#install python system dependancies
+RUN mkdir /opt/geoappopt
+#make dir to take ownership for non root user
+
+RUN chown geo-user:geo-user /opt/geoappopt
+RUN chown geo-user:geo-user /opt/requirements.txt
+# take ownership for non root user
+
+
+USER geo-user
+
+RUN python3 -m venv /opt/geoappopt/.geoappvenv
+#create venv
+RUN source  /opt/geoappopt/.geoappvenv/bin/activate &&  \
+pip install  -r /opt/requirements.txt
+
+#RUN apt-get install -y locales python3-django  python3-requests python3-geopy python3-venv pipx
+#if not run uncomment this and comment lines 34 31 33 26 27  23 and 5
+#this installs python packages system wide through apt and not through a userwide venv 
+
+USER root
+RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+# specify locale
+
+
+
+ENV LANG = en_US.utf8
+#specifying locale in /etc/default/locale
+
+
+EXPOSE 8000
+#exposing udp and tcp ports for python script
+
+# Start django project
+CMD [ "/opt/geoappopt/.geoappvenv/bin/python3", "/app/geoapp/manage.py", "runserver","0.0.0.0:8000" ]
+#executes python from venv and runs project with docker images ip

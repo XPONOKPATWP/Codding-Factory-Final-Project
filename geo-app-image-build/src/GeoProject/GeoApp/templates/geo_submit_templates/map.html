@@ -1,0 +1,27 @@
+<div style=" background-color:  #e6f0ff">
+    <hr>
+    <div class="p-2"> Graphical Representation:<br>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="dj_map" id="map" style="height: 60em; width: 80em;align-self: center"></div>
+        </div>
+    </div>
+</div>
+<script>
+
+    let longitude = {{city.longitude}}
+    let latitude = {{city.latitude}}
+
+    let map = L.map('map')
+    let latitude_longtitude = new L.LatLng(latitude, longitude);
+    let bounds = latitude_longtitude.toBounds(3000);
+    let zoom = 10
+    map.panTo(latitude_longtitude);
+    map.fitBounds(bounds);
+    map.setView(latitude_longtitude, zoom)
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 1,
+        maxZoom: 90,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+</script>

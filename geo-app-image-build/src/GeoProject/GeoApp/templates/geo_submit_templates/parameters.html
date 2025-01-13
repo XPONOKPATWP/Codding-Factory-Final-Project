@@ -1,0 +1,30 @@
+<div class="text-center">
+    <br>
+    {% if request.session.is_kilometers %}
+    <button class="btn btn-primary" formnovalidate="formnovalidate" name="miles_btn" style="background-color:coral"
+            type="submit">Change to Miles
+    </button>
+    {%else%}
+    <button class="btn btn-primary" formnovalidate="formnovalidate" name="kilometers_btn" style="background-color:coral"
+            type="submit">Change to Kilometers
+    </button>
+    {%endif%}<br>
+    <br>
+    Enter Fuel Consumption<br>
+    in liters per 100 {% if request.session.is_kilometers %} Kilometers {%else%} Miles {%endif%}
+    <br><br>
+    {{query_form.fuel_consumption}}<br><br>
+    <button class="btn btn-primary" formnovalidate="formnovalidate" name="fuel_consumption_btn"
+            style="background-color:cadetblue"
+            type="submit">Submit
+    </button>
+    <button class="btn btn-primary" formnovalidate="formnovalidate" name="clear_fuel_consumption_btn"
+            style="background-color: indianred"
+            type="submit">
+        Clear
+    </button>
+    <br>
+    <hr>
+    <br>
+
+</div>

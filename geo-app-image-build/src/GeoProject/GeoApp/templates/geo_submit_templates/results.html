@@ -1,0 +1,13 @@
+{% if value.calculated_consumption is not None%}
+<div class=" h-100 d-outline text-center" style="width: 15em; ">
+    <div class="d-outline text-center" style="background-color: floralwhite">
+        <hr>
+        Result:<br>
+        <hr>
+        The approximate distance to be travelled is:<br>
+        {{ value.distance }}{% if value.is_kilometers %}Kms {%else%}Ms{%endif%} <br>
+        with consumption {{ value.calculated_consumption }} Liters
+        {%endif%}
+        <hr>
+    </div>
+</div>

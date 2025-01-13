@@ -1,0 +1,23 @@
+{% extends "base.html"%} {%block title%} Home Page {%endblock%}
+{% block left %}
+{%endblock%}
+{% block right %}
+{%endblock%}
+{%block content%}
+<br>
+<div class="sticky-top">
+    <div class="card-header rounded" style="background-color: orange;color: white;">
+        <h4>Past Queries</h4>
+    </div>
+</div>
+
+<br>
+<form method="POST">
+    {%csrf_token%}
+    {% for query in user_queries%}
+    {%if query.username == request.session.user.username %}
+    {% include "user_stats_templates/user_past_query.html" with query=query%}
+    {%endif%}
+    {%endfor%}
+</form>
+{%endblock%}}

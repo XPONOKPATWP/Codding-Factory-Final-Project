@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+{%block title%}User Logging Out</title>{%endblock%}
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                Logged In User : {{request.username}}
+            </div>
+            <div class="col">
+                <button class="btn btn-outline-dark" name="log_out_button" type="submit">Log Out</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

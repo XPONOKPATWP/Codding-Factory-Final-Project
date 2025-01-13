@@ -1,0 +1,50 @@
+{% extends "base.html"%}
+{%block title%}User Login</title>{%endblock%}
+{% block heading_text %}
+User Login
+{%endblock%}
+{% block left %}
+{%endblock%}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="card ">
+        <div class="d-outline center">
+            <br>
+            <br>
+            <div class="input-group center w-25 mx-auto">
+                <div class="input-group-prepend"> <span class="input-group-text"
+                                                        style="background-color: steelblue;color: white">
+                    Username : </span> {{user_form.username}}
+                </div>
+                <div class="input-group">
+
+                    <div class="input-group-prepend"> <span class="input-group-text"
+                                                            style="background-color: steelblue;color: white">
+                Password : </span> {{user_form.password}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <br>
+                    <button class="btn btn-outline-dark" name="log_in_button" style="background-color: cadetblue;color: white"
+                            type="submit">Log in
+                    </button>
+                    <br><br>
+                    do you want to create an account ?
+                    <button class="btn btn-outline-dark" formnovalidate="formnovalidate" name="want_to_register_button"
+                            style="background-color: coral;color: white" type="submit">Register
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+</form>
+{%endblock%}
+{% block right %}
+{%endblock%}
+

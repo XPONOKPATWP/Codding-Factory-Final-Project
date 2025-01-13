@@ -1,0 +1,56 @@
+<div class="card ">
+    <div class="row rounded container-xxl  center-align ">
+        <div class="col ">
+            <div class="d-outline-block text-justify" style="background-color: honeydew">
+                <hr>
+                <div class="col">
+                    <div class="card text-center" style="width: 18rem;">
+                        {{ query.username }}<br>
+                        <span class="badge badge-secondary">{{query.id}}</span>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item   flex-column align-items-start  " style="background-color: lightcyan">
+                        <div class="card" style="width: 18rem;">
+                            Locations
+                        </div>
+                        <b>from: </b> {{query.query_city_1}}<br>
+                        <b>To: </b> {{query.query_city_2}}<br>
+                    </a>
+                    <a class="list-group-item   flex-column align-items-start  " style="background-color:lightcyan ">
+                        <div class="card" style="width: 18rem;">
+                            Fetched Coordinates:
+                        </div>
+                        <br>
+                        <b>Address 1 Coordinates: </b> {{query.coordinates_1}}<br>
+                        <b>Address 2 Coordinates: </b> {{query.coordinates_2}}<br> </a>
+                    <a class="list-group-item   flex-column align-items-start  "
+                       style="background-color: lightgoldenrodyellow">
+                        <div class="card" style="width: 18rem;">
+                            Parameters:
+                        </div>
+                        <br>
+                        <b>Fuel Consumption: </b> {{query.fuel_consumption}}<br>
+                        <b>Mode: </b>
+                        {% if query.is_kilometers %}
+                        kilometers
+                        {% else %}
+                        miles
+                        {% endif %}
+                        <br>
+                        <b>Consumed Liters: </b> {{query.result}}<br>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary rounded" formnovalidate="formnovalidate " name="delete_query_btn"
+                    style="background-color: indianred" value='{{query.id}}'>Delete Query
+            </button>
+            <br>
+            <br>
+        </div>
+
+    </div>
+
+</div>
+<br>

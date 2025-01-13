@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{%block title%}GeoLoc</title>{%endblock%}
+{%block heading_text%}Map{%endblock%}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {%include "geo_submit_templates/city_selector_form_template.html"%}
+
+</form>
+{% include "geo_submit_templates/map.html" with city=request.session.selected_city %}
+{{request.session.selected_city.address}}
+{% endblock %}
+{%block left%}
+<form method="post">
+    {% csrf_token %}
+    {% include "geo_submit_templates/parameters.html"%}
+    {% if request.session.fuel_consumption is not None %}
+    {% include "geo_submit_templates/parameters_selection.html" with value=request.session.fuel_consumption %}
+    {%endif%}
+    {% if request.session.city_1 is not None %}
+    {% include "geo_submit_templates/city_selection.html" with value=request.session.city_1.data%}
+    {%endif%}
+    {% if request.session.city_2 is not None %}
+    {% include "geo_submit_templates/city_selection.html" with value=request.session.city_2.data %}
+    {%endif%}
+</form>
+{% endblock %}
+{%block right%}
+{% include "geo_submit_templates/results.html" with value=request.session%}
+{%endblock%}

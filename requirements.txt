@@ -1,0 +1,12 @@
+asgiref
+certifi
+charset-normalizer
+Django
+django-extensions
+geographiclib
+geopy
+idna
+packaging
+requests
+sqlparse
+urllib3

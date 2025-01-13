@@ -1,0 +1,77 @@
+{% extends "base.html"%}
+{%block title%}Create User</title>{%endblock%}
+{%block heading_text%}User Registration{%endblock%}
+{%block left%}{%endblock%}
+{%block right%}{%endblock%}
+{% block content %}
+<div class="card">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="container text-center">
+            <div class="input-group">
+                <div class="container">
+                    <div class="d-flex flex-row">
+                        <div class="col-sm">
+                            <br>
+                            <br>
+
+                            <div class="input-group-prepend"><span class="input-group-text" id="first_name_addon"
+                                                                   style="background-color: steelblue;color: white">First Name :</span>{{user_form.first_name}}
+                            </div>
+                            <br>
+                            <div class="input-group-prepend"><span class="input-group-text" id="last_name_addon"
+                                                                   style="background-color: steelblue;color: white">Last Name :</span>{{user_form.last_name}}
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <br>
+                            <br>
+                            <div class="input-group-prepend"><span class="input-group-text"
+                                                                   id="Username_addon"
+                                                                   style="background-color: steelblue;color: white">Username :</span>{{user_form.username}}
+                            </div>
+                            <br>
+                            <div class="input-group-prepend"><span class="input-group-text"
+                                                                   id="password_addon"
+                                                                   style="background-color: steelblue;color: white">Password :</span>{{user_form.password}}
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <br>
+                            <br>
+                            <div class="input-group-prepend"><span class="input-group-text" id="email_addon"
+                                                                   style="background-color: steelblue;color: white">e-mail :</span>{{user_form.email}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="col-sm text-left">
+                        <br>
+                       <p class="text-muted"><small> Username: Requires at least 8 characters, Upper and lower case letters and numbers <br>
+                        Password: Requires at least 8 characters, Upper and lower case letters, numbers and symbols, ({{essential.punc}})<br>
+                        E-Mail: Must be Unique no other check has been implemented</small></p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="col-sm">
+                            <button class="btn btn-outline-dark" name="sign_up_button" style="background-color: coral;color: white"
+                                    type="submit">Register
+                            </button>
+                            <br>
+                            <br>
+                            do you have an account ?
+                            <button class="btn btn-outline-dark" formnovalidate="formnovalidate"
+                                    name="already_login_button" style="background-color: cadetblue;color: white"
+                                    type="submit">Log
+                                in
+                            </button>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{%endblock%}
+
